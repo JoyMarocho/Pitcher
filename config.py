@@ -1,8 +1,8 @@
 import os
 
 class Config:
-    SECRET_KEY = 'thisissecret'
-    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://bigbaby:New Password@localhost/pitcher'
+    SECRET_KEY = os.environ.get('thisissecret')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
     #email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -14,12 +14,17 @@ class Config:
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
 
+    DEBUG = True
+    
 class ProdConfig(Config):
+    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    
     pass
 
 class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://bigbaby:New Password@localhost/pitcher_test'
-
+    DEBUG = True
+    
 class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://bigbaby:New Password@localhost/pitcher'
     DEBUG = True
