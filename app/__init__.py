@@ -23,6 +23,9 @@ def create_app(config_name):
     #creating app configurations
     app.config.from_object(config_options[config_name])
 
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY']='joy001'
+
     #initializing flask extensions
     bootstrap.init_app(app)
     db.init_app(app)
