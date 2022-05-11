@@ -2,7 +2,7 @@ import os
 
 class Config:
     SECRET_KEY = 'thisissecret'
-    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://moringa:Access@localhost/pitchcollections'
+    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://bigbaby:New Password@localhost/pitcher'
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
     #email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -18,10 +18,10 @@ class ProdConfig(Config):
     pass
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://moringa:Access@localhost/pitchcollections_test'
+    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://bigbaby:New Password@localhost/pitcher_test'
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://moringa:Access@localhost/pitchcollections'
+    SQLALCHEMY_DATABASE_URI ='postgresql+psycopg2://bigbaby:New Password@localhost/pitcher'
     DEBUG = True
 
 

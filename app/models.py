@@ -8,13 +8,13 @@ from datetime import datetime
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
-    username = db.Column(db.String(255))
-    email = db.Column(db.String(255),unique=True, index=True)
+    username = db.Column(db.Varchar(255))
+    email = db.Column(db.Varchar(255),unique=True, index=True)
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    bio = db.Column(db.String(255))
-    profile_pic_path = db.Column(db.String())
-    password_hash = db.Column(db.String(255))
-    pass_secure = db.Column(db.String(255))
+    bio = db.Column(db.Varchar(255))
+    profile_pic_path = db.Column(db.Varchar())
+    password_hash = db.Column(db.Varchar(255))
+    pass_secure = db.Column(db.Varchar(255))
     comments = db.relationship('Comment',backref = 'user',lazy = "dynamic")
         
     @property
@@ -45,7 +45,7 @@ class Role(db.Model):
     __tablename__ = 'roles'
 
     id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(255))
+    name = db.Column(db.Varchar(255))
     users = db.relationship('User',backref = 'role', lazy="dynamic")
 
     def __repr__(self):
@@ -57,8 +57,8 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     pitch_id = db.Column(db.Integer)
-    pitch_title = db.Column(db.String)
-    pitch_review = db.Column(db.String)
+    pitch_title = db.Column(db.Varchar)
+    pitch_review = db.Column(db.Varchar)
     posted = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 

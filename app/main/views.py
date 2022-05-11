@@ -1,4 +1,4 @@
-om app.main.forms import CommentForm, UpdateProfile
+from app.main.forms import CommentForm, UpdateProfile
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from flask_login import login_required,current_user
@@ -37,6 +37,7 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
+
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
@@ -45,6 +46,7 @@ def profile(uname):
         abort(404)
 
     return render_template("profile/profile.html", user=user)
+
 
 @main.route('/user/<uname>/update',methods=['GET','POST'])
 @login_required
