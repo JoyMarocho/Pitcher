@@ -1,29 +1,40 @@
-<div class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggel" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-collapse" href="/">Pitcher</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/pitches/"></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark ">
+    <a class="navbar-brand" href="{{url_for('main.index')}}"><strong> Pitcher </strong> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('main.index')}}">All Pitches</a>
+                </li>
                 {% if current_user.is_authenticated %}
-                <li style="color:white;padding:15px;">{{current_user.username}}</li>
-                <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
-                <li><a href="{{url_for('auth.logout')}}">Sign out</a></li>
-                {% else %}
-                <li><a href="{{url_for('auth.login')}}">Sign in</a></li>
-                {%endif%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('main.new_pitch')}}">New Pitch</a>
+                </li>
+                {% endif %}
             </ul>
-        </div>
-    </div>
-</div>
+        <ul class="navbar-nav ml-auto">
+            {% if current_user.is_authenticated %}
 
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style= 'margin-right:30px' data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <em class="fas fa-user"></em>&nbsp;<strong>{{current_user.username}}</strong> </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                <a class="dropdown-item" href="{{url_for('main.profile',name=current_user.username)}}"><em class="far fa-user"></em>&nbsp; My account </a>
+                <a class="dropdown-item" href="{{url_for('auth.logout')}}"><em class="fas fa-sign-out-alt"></em>&nbsp; Log out</a>
+            </div>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a  class="nav-link" href="{{url_for('auth.login')}}" style= 'margin-right:30px'><em class="fas fa-sign-in-alt"></em>&nbsp; <strong> Log In </strong></a>
+            </li>
+            <li class="nav-item">
+                    <a style= 'margin-right:30px' class="nav-link" href="{{url_for('auth.signup')}}"><em class="fas fa-user-plus"></em></i>&nbsp; <strong> Sign Up </strong></a>
+                </li>
+            {%endif%}
+
+        </ul>
+    </div>
+</nav>
